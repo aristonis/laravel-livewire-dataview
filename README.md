@@ -1,4 +1,4 @@
-# :package_description
+# laravel-livewire-dataview
 
 [![Latest Version on Packagist](https://img.shields.io/packagist/v/aristonis/laravel-livewire-dataview.svg?style=flat-square)](https://packagist.org/packages/aristonis/laravel-livewire-dataview)
 [![GitHub Tests Action Status](https://img.shields.io/github/actions/workflow/status/aristonis/laravel-livewire-dataview/run-tests.yml?branch=main&label=tests&style=flat-square)](https://github.com/aristonis/laravel-livewire-dataview/actions?query=workflow%3Arun-tests+branch%3Amain)
