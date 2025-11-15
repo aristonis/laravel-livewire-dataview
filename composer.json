@@ -1,0 +1,32 @@
+{
+    "name": "aristonis/laravel-livewire-dataview",
+    "description": "this package manage livewire components to show set of item and handle quering of database",
+    "type": "dev",
+    "require": {
+        "livewire/livewire": "^3.6",
+        "laravel/laravel": "11"
+    },
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Aristonis\\LaravelLivewireDataview\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Aristonis\\LaravelLivewireDataview\\Tests\\": "tests"
+        }
+    },
+    "authors": [
+        {
+            "name": "mekadalibrahem",
+            "email": "mekadalibrahem123@gmail.com"
+        }
+    ],
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "require-dev": {
+        "orchestra/testbench": "^9.15",
+        "phpunit/phpunit": "^11.5"
+    }
+}
