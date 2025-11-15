@@ -17,6 +17,13 @@
             "Aristonis\\LaravelLivewireDataview\\Tests\\": "tests"
         }
     },
+    "extra": {
+      "laravel": {
+          "providers": [
+              "Aristonis\\LaravelLivewireDataview\\LaravelLirewireDataviewServiceProvider"
+            ]
+        }
+    },
     "authors": [
         {
             "name": "mekadalibrahem",

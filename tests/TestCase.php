@@ -2,7 +2,7 @@
 
 namespace Aristonis\LaravelLivewireDataview\Tests;
 
-
+use Aristonis\LaravelLivewireDataview\LaravelLirewireDataviewServiceProvider;
 
 class TestCase extends \Orchestra\Testbench\TestCase
 {
@@ -11,7 +11,12 @@ class TestCase extends \Orchestra\Testbench\TestCase
     parent::setUp();
     // additional setup
   }
-
+  protected function getPackageProviders($app)
+  {
+    return [
+      LaravelLirewireDataviewServiceProvider::class,
+    ];
+  }
   protected function getEnvironmentSetUp($app)
   {
     // perform environment setup
