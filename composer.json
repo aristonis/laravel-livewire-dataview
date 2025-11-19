@@ -1,10 +1,10 @@
 {
     "name": "aristonis/laravel-livewire-dataview",
     "description": "this package manage livewire components to show set of item and handle quering of database",
-    "type": "dev",
+    "version": "0.1.0",
     "require": {
-        "livewire/livewire": "^3.6",
-        "laravel/laravel": "11"
+        "livewire/livewire": "^3.6"
+        
     },
     "license": "MIT",
     "autoload": {
