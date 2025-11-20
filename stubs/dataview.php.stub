@@ -1,0 +1,21 @@
+<?php
+
+namespace {{ namespace }};
+
+use Aristonis\LaravelLivewireDataview\DataViewComponent;
+
+class {{ class }} extends DataViewComponent
+{
+    protected function configure()
+    {
+        // This MUST be set to enable item components
+        {{ item_view }}
+    }
+
+    protected function query()
+    {
+        // TODO: return your Eloquent or Query Builder
+        // Example:
+        // return User::query();
+    }
+}

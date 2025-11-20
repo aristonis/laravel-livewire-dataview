@@ -2,6 +2,7 @@
 
 namespace Aristonis\LaravelLivewireDataview;
 
+use Aristonis\LaravelLivewireDataview\Commands\MakeDataViewCommand;
 use Illuminate\Support\ServiceProvider;
 
 class LaravelLirewireDataviewServiceProvider extends ServiceProvider
@@ -13,12 +14,23 @@ class LaravelLirewireDataviewServiceProvider extends ServiceProvider
 
     public function boot()
     {
+        // Register command (only in console)
+        if ($this->app->runningInConsole()) {
+
+            $this->commands([
+                MakeDataViewCommand::class,
+            ]);
+
+            // Publish stubs (optional)
+            $this->publishes([
+                __DIR__ . '/../stubs' => base_path('stubs/laravel-livewire-dataview'),
+            ], 'dataview-stubs');
+        }
         // start publishes
         $this->publishConfig();
         // end publishes
 
         $this->loadViewsFrom(__DIR__ . "/../resources/views", 'aristonis-dataview');
-
     }
 
     private function publishConfig()

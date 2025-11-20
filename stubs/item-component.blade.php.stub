@@ -1,0 +1,4 @@
+<div>
+    {{-- Display your item --}}
+    {{ json_encode($item) }}
+</div>
