@@ -4,7 +4,8 @@ namespace Aristonis\LaravelLivewireDataview\Tests\Unit\Traits;
 
 use Aristonis\LaravelLivewireDataview\Traits\PaginationConfigTrait;
 use Aristonis\LaravelLivewireDataview\Tests\TestCase;
-use Exception;
+use Aristonis\LaravelLivewireDataview\Exceptions\InvalidPerPageException;
+use Aristonis\LaravelLivewireDataview\Exceptions\ErrorCodes;
 
 class PaginationConfigTraitTest extends TestCase
 {
@@ -18,7 +19,6 @@ class PaginationConfigTraitTest extends TestCase
     public function test_default_pagination_enabled()
     {
         $obj = $this->getDummy();
-
         $this->assertTrue($obj->isPaginagtionEnable());
     }
 
@@ -26,7 +26,6 @@ class PaginationConfigTraitTest extends TestCase
     {
         $obj = $this->getDummy();
         $obj->disablePagination();
-
         $this->assertFalse($obj->isPaginagtionEnable());
     }
 
@@ -43,7 +42,8 @@ class PaginationConfigTraitTest extends TestCase
     {
         $obj = $this->getDummy();
 
-        $this->expectException(Exception::class);
+        $this->expectException(InvalidPerPageException::class);
+        $this->expectExceptionCode(ErrorCodes::INVALID_PER_PAGE);
 
         $obj->setPerPage(0);
     }

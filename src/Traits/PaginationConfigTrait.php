@@ -2,45 +2,48 @@
 
 namespace Aristonis\LaravelLivewireDataview\Traits;
 
-use Exception;
+use Aristonis\LaravelLivewireDataview\Exceptions\InvalidPerPageException;
 
-/**
- * pagination configration for query 
- * 
- */
 trait PaginationConfigTrait
 {
+    // Keep existing property names from your code to avoid breaking tests
+    protected bool $hasPagination = true;
+    protected int $perPage = 0;
 
-    protected  bool $hasPagination = true;
-    protected int  $perPage = 0;
     public function isPaginagtionEnable(): bool
     {
         return $this->hasPagination;
     }
 
-    public function enablePagination()
+    public function enablePagination(): void
     {
         $this->hasPagination = true;
     }
-    public function disablePagination()
+
+    public function disablePagination(): void
     {
         $this->hasPagination = false;
     }
+
     public function getPerPage(): int
     {
-        if ($this->perPage == 0) {
-            $perPage = config("dataview.pagination.per_page", 10);
-            $this->setPerPage($perPage);
-            return $perPage;
+        if ($this->perPage === 0) {
+            $configured = config("dataview.pagination.per_page", 10);
+            // Ensure we set internal perPage to configured integer
+            $this->setPerPage((int) $configured);
+            return (int) $configured;
         }
+
         return $this->perPage;
     }
+
     public function setPerPage(int $perPage): void
     {
-        if ($perPage < 1) {
-            throw new Exception("perPage can't be less then 1", 1);
-        } else {
-            $this->perPage = $perPage;
+        // Validate integer and positive value
+        if (! is_int($perPage) || $perPage < 1) {
+            throw new InvalidPerPageException($perPage, ['method' => 'setPerPage', 'trait' => self::class]);
         }
+
+        $this->perPage = $perPage;
     }
 }
