@@ -3,7 +3,7 @@
 namespace Aristonis\LaravelLivewireDataview\Traits;
 
 use Aristonis\LaravelLivewireDataview\Exceptions\MissingItemViewException;
-use InvalidArgumentException;
+use Aristonis\LaravelLivewireDataview\Exceptions\InvalidItemViewException;
 
 trait HasItemView
 {
@@ -12,7 +12,10 @@ trait HasItemView
     public function getItemView(): string
     {
         if (! $this->itemView) {
-            throw new MissingItemViewException();
+            throw new MissingItemViewException([
+                'method' => 'getItemView',
+                'trait'  => self::class,
+            ]);
         }
 
         return $this->itemView;
@@ -20,8 +23,11 @@ trait HasItemView
 
     public function setItemView(?string $view): void
     {
-        if (trim($view) === '') {
-            throw new InvalidArgumentException("Item view cannot be empty.");
+        if (! $view || trim($view) === '') {
+            throw new InvalidItemViewException($view ?? '', [
+                'method' => 'setItemView',
+                'trait'  => self::class,
+            ]);
         }
 
         $this->itemView = $view;

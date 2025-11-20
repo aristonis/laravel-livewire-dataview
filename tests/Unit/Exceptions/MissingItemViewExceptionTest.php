@@ -8,12 +8,19 @@ use PHPUnit\Framework\TestCase;
 
 class MissingItemViewExceptionTest extends TestCase
 {
+    
     public function test_exception_defaults_are_correct()
     {
         $e = new MissingItemViewException();
 
-        $this->assertEquals(ErrorCodes::MISSING_ITEM_VIEW, $e->getCode());
-        $this->assertEquals('missing-item-view', $e->getKey());
-        $this->assertEquals(ErrorCodes::MESSAGES[1002], $e->getMessage());
+        $this->assertSame(ErrorCodes::MISSING_ITEM_VIEW, $e->getCode());
+
+        $this->assertSame(
+            ErrorCodes::MESSAGES[ErrorCodes::MISSING_ITEM_VIEW],
+            $e->getMessage()
+        );
+
+        // default: empty context
+        $this->assertSame([], $e->context());
     }
 }

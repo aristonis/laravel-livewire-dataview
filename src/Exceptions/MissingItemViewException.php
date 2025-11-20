@@ -2,14 +2,24 @@
 
 namespace Aristonis\LaravelLivewireDataview\Exceptions;
 
-class MissingItemViewException extends DataViewException
+use Exception;
+
+class MissingItemViewException extends Exception
 {
-    public function __construct(?string $message = null)
+    protected array $context = [];
+
+    public function __construct(array $context = [])
     {
+        $this->context = $context;
+
         parent::__construct(
-            ErrorCodes::MISSING_ITEM_VIEW,
-            'missing-item-view',
-            $message
+            ErrorCodes::MESSAGES[ErrorCodes::MISSING_ITEM_VIEW],
+            ErrorCodes::MISSING_ITEM_VIEW
         );
+    }
+
+    public function context(): array
+    {
+        return $this->context;
     }
 }

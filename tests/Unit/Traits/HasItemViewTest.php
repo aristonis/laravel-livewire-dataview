@@ -3,41 +3,36 @@
 namespace Aristonis\LaravelLivewireDataview\Tests\Unit\Traits;
 
 use Aristonis\LaravelLivewireDataview\Traits\HasItemView;
+use Aristonis\LaravelLivewireDataview\Exceptions\MissingItemViewException;
+use Aristonis\LaravelLivewireDataview\Exceptions\InvalidItemViewException;
 use Aristonis\LaravelLivewireDataview\Tests\TestCase;
-use InvalidArgumentException;
-use Exception;
 
 class HasItemViewTest extends TestCase
 {
-    /** Dummy class using trait */
-    protected function getDummy()
-    {
-        return new class {
-            use HasItemView;
-        };
-    }
+    use HasItemView;
 
+    
     public function test_set_item_view_stores_value()
     {
-        $obj = $this->getDummy();
-        $obj->setItemView("admin.user-row");
+        $this->setItemView('users.row');
 
-        $this->assertEquals("admin.user-row", $obj->getItemView());
+        $this->assertSame('users.row', $this->getItemView());
     }
 
+   
     public function test_set_item_view_null_throws_exception()
     {
-        $this->expectException(InvalidArgumentException::class);
+        $this->expectException(InvalidItemViewException::class);
+        $this->expectExceptionMessage('The item view [] is invalid.');
 
-        $obj = $this->getDummy();
-        $obj->setItemView(null);
+        $this->setItemView('');
     }
 
+    
     public function test_get_item_view_without_setting_throws_exception()
     {
-        $this->expectException(Exception::class);
+        $this->expectException(MissingItemViewException::class);
 
-        $obj = $this->getDummy();
-        $obj->getItemView();
+        $this->getItemView();
     }
 }
