@@ -20,7 +20,7 @@
     "extra": {
       "laravel": {
           "providers": [
-              "Aristonis\\LaravelLivewireDataview\\LaravelLirewireDataviewServiceProvider"
+              "Aristonis\\LaravelLivewireDataview\\LaravelLivewireDataviewServiceProvider"
             ]
         }
     },

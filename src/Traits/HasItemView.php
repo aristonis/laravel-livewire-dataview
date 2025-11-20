@@ -19,7 +19,7 @@ trait HasItemView
         return $this->itemView;
     }
 
-    public function setItemView(string $view): void
+    public function setItemView(?string $view): void
     {
         if (trim($view) === '') {
             throw new InvalidArgumentException("Item view cannot be empty.");

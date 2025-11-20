@@ -3,22 +3,27 @@
 namespace Aristonis\LaravelLivewireDataview\Tests;
 
 use Aristonis\LaravelLivewireDataview\LaravelLirewireDataviewServiceProvider;
+use Livewire\LivewireServiceProvider;
+use Orchestra\Testbench\TestCase as Orchestra;
 
-class TestCase extends \Orchestra\Testbench\TestCase
+class TestCase extends Orchestra
 {
-  public function setUp(): void
-  {
-    parent::setUp();
-    // additional setup
-  }
   protected function getPackageProviders($app)
   {
     return [
+      LivewireServiceProvider::class, // REQUIRED
       LaravelLirewireDataviewServiceProvider::class,
     ];
   }
+
   protected function getEnvironmentSetUp($app)
   {
-    // perform environment setup
+    $app['config']->set('database.default', 'testing');
+
+    $app['config']->set('database.connections.testing', [
+      'driver' => 'sqlite',
+      'database' => ':memory:',
+      'prefix' => '',
+    ]);
   }
 }
