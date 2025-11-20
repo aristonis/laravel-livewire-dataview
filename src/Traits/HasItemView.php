@@ -2,6 +2,7 @@
 
 namespace Aristonis\LaravelLivewireDataview\Traits;
 
+use Aristonis\LaravelLivewireDataview\Exceptions\MissingItemViewException;
 use InvalidArgumentException;
 
 trait HasItemView
@@ -11,9 +12,7 @@ trait HasItemView
     public function getItemView(): string
     {
         if (! $this->itemView) {
-            throw new InvalidArgumentException(
-                "Item view is not set. Call setItemView('livewire.component-path') inside configure()."
-            );
+            throw new MissingItemViewException();
         }
 
         return $this->itemView;

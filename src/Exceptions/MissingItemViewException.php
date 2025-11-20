@@ -2,13 +2,13 @@
 
 namespace Aristonis\LaravelLivewireDataview\Exceptions;
 
-class InvalidQueryException extends DataViewException
+class MissingItemViewException extends DataViewException
 {
     public function __construct(?string $message = null)
     {
         parent::__construct(
-            ErrorCodes::INVALID_QUERY,
-            'invalid-query',
+            ErrorCodes::MISSING_ITEM_VIEW,
+            'missing-item-view',
             $message
         );
     }
