@@ -56,7 +56,7 @@ php artisan vendor:publish --tag=dataview-stubs    # copies stub templates
    {
        protected function configure(): void
        {
-           $this->setItemView('livewire.users.user-table-item');
+           $this->setItemView('users.user-table-item');
            $this->setPerPage(20);
        }
 

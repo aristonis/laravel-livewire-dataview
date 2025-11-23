@@ -5,7 +5,7 @@ namespace Aristonis\LaravelLivewireDataview;
 use Aristonis\LaravelLivewireDataview\Commands\MakeDataViewCommand;
 use Illuminate\Support\ServiceProvider;
 
-class LaravelLirewireDataviewServiceProvider extends ServiceProvider
+class LaravelLivewireDataviewServiceProvider extends ServiceProvider
 {
     public function register()
     {
