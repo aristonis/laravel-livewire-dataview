@@ -30,6 +30,7 @@ composer require aristonis/laravel-livewire-dataview
 Optionally publish the package assets:
 
 ```bash
+php artisan vendor:publish --tag=dataview-views    # copues views component and customize it
 php artisan vendor:publish --tag=dataview-config   # copies config/dataview.php
 php artisan vendor:publish --tag=dataview-stubs    # copies stub templates
 ```

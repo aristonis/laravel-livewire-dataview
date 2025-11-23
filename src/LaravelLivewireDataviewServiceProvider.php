@@ -21,22 +21,42 @@ class LaravelLivewireDataviewServiceProvider extends ServiceProvider
                 MakeDataViewCommand::class,
             ]);
 
-            // Publish stubs (optional)
-            $this->publishes([
-                __DIR__ . '/../stubs' => base_path('stubs/laravel-livewire-dataview'),
-            ], 'dataview-stubs');
+           
         }
-        // start publishes
-        $this->publishConfig();
-        // end publishes
+        
+        $this->publishList();
+        
 
         $this->loadViewsFrom(__DIR__ . "/../resources/views", 'aristonis-dataview');
+        
     }
 
+
+    public function publishList(){
+        $this->publishConfig();
+        $this->publishStubs();
+        $this->publishViews();
+
+    }
+    /* start publish methods */
     private function publishConfig()
     {
         $this->publishes([
             __DIR__ . '/../config/dataview.php' => config_path('dataview.php'),
         ], 'dataview-config');
     }
+
+    private function publishStubs(){
+         $this->publishes([
+                __DIR__ . '/../stubs' => base_path('stubs/laravel-livewire-dataview'),
+            ], 'dataview-stubs');
+    }
+    public function publishViews(){
+        $this->publishes([
+            __DIR__ .'/../resources/views/' => resource_path('views/vendor/aristonis-dataview'),
+        ],
+        "dataview-views");
+    }
+    /* end publish methods */
+
 }
